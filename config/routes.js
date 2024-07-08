@@ -11,6 +11,7 @@
 module.exports.routes = {
 
   '/': { action: 'Home/Index' },
+  'GET /envios': { action: 'Envios/Index' },
 
 
   /***************************************************************************

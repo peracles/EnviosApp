@@ -28,7 +28,7 @@
 module.exports = {
   Index: function (req, res) 
   { 
-    return res.view('pages/Index');
+    return res.view('pages/Index', {layout: 'layouts/layout'})
   }
   //logout: function (req, res) { ... },
   //signup: function (req, res) { ... },
