@@ -1,0 +1,15 @@
+mysql credencials
+instance name:MySQL80
+Se prende para usarse
+
+user:root
+pass:Jp-R00t$2024
+
+user:jperales
+pass:Jp-JP3ral3s$2024
+
+
+-------------------------------------
+Mongo credencials
+Sevice name: MongoDB
+URI: mongodb://localhost:27017
