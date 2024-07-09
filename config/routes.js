@@ -10,8 +10,40 @@
 
 module.exports.routes = {
 
-  '/': { action: 'Home/Index' },
-  'GET /envios': { action: 'Envios/Index' },
+  '/': { view: 'pages/Index'},
+
+  // Create Envío
+  '/create': {
+    controller: 'HomeController',
+    action: 'create'
+  },
+
+  // Read All Envios
+  '/list': {
+    controller: 'EnvioController',
+    action: 'list'
+  },
+
+  // Read Single Envío
+  '/:id': {
+    controller: 'HomeController',
+    action: 'read'
+  },
+
+  // Update Envío
+  '/:id/update': {
+    controller: 'HomeController',
+    action: 'update'
+  },
+
+  // Delete Envío
+  '/:id/delete': {
+    controller: 'HomeController',
+    action: 'delete'
+  },
+
+  //Esto usando mongo
+  'GET /envios': { view: 'pages/Envios' }
 
 
   /***************************************************************************

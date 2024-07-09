@@ -68,10 +68,10 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  attributes: {
-    createdAt: { type: 'number', autoCreatedAt: true, },
-    updatedAt: { type: 'number', autoUpdatedAt: true, },
-    id: { type: 'number', autoIncrement: true, },
+  //attributes: {
+  //  createdAt: { type: 'number', autoCreatedAt: true, },
+  //  updatedAt: { type: 'number', autoUpdatedAt: true, },
+  //  id: { type: 'number', autoIncrement: true, },
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?
     //  ||   Replace `id` above with this instead:
@@ -83,7 +83,7 @@ module.exports.models = {
     // Plus, don't forget to configure MongoDB as your default datastore:
     // https://sailsjs.com/docs/tutorials/using-mongo-db
     //--------------------------------------------------------------------------
-  },
+  //},
 
 
   /******************************************************************************
@@ -100,9 +100,9 @@ module.exports.models = {
   *                                                                             *
   ******************************************************************************/
 
-  dataEncryptionKeys: {
-    default: 'b6ZdyNstwqRjLR+Vec8gVhYn3aVhKvOkwN7b7C+X4FA='
-  },
+  //dataEncryptionKeys: {
+  //  default: 'b6ZdyNstwqRjLR+Vec8gVhYn3aVhKvOkwN7b7C+X4FA='
+  //},
 
 
   /***************************************************************************
@@ -118,7 +118,9 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  cascadeOnDestroy: true
+  //cascadeOnDestroy: true,
+
+  migrate: 'drop'
 
 
 };

@@ -33,13 +33,14 @@ module.exports.datastores = {
   ***************************************************************************/
 
   default: {
-    //adapter: require('sails-mysql'),
-    //url: 'mysql://jperales:Jp-JP3ral3s$2024@127.0.0.1:3306/envios',
+    adapter: require('sails-mysql'),
+    url: 'mysql://jperales:Jp-JP3ral3s$2024@127.0.0.1:3306/envios',
   },
 
+  
   //mongoDBConection: {
-    //adapter: require('sails-mongo'),
-    //url: 'mongodb://localhost:27017/enviosdb',
+  //  adapter: require('sails-mongo'),
+  //  url: 'mongodb://localhost:27017/enviosdb',
   //}
 
 
