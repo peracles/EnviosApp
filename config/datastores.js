@@ -38,10 +38,10 @@ module.exports.datastores = {
   },
 
   
-  //mongoDBConection: {
-  //  adapter: require('sails-mongo'),
-  //  url: 'mongodb://localhost:27017/enviosdb',
-  //}
+  mongoDBConection: {
+    adapter: require('sails-mongo'),
+    url: 'mongodb://localhost:27017/envios',
+  }
 
 
 };

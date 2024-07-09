@@ -1,0 +1,85 @@
+<script src="/js/jp.envios/jp.envios.js"></script>
+<section class="container" id="titulo">
+  <div class="row d-flex justify-content-center">
+    <h1 class="text-center">Lista de Envios actualizados manualmente</h1>
+    <p>Para ver la lista de envios actualizados periodicamente favor de ingresar a la url <%= locals.baseUrl %>/periodico
+     en una pestaña nueva sin cerrar esta, para ver la demostracion
+    </p>
+  </div>
+  <div class="row"></div>
+  <div class="row d-flex justify-content-start">
+    <button type="button" class="btn btn-primary btn-nuevo">Nuevo Envio</button>
+  </div>
+</section>
+
+<section class="container panel mt-2" id="lista-envios"></section>
+<section class="container panel mt-2" id="forma-envio">
+  <div class="forma">
+    <div class="row mb-4">
+      <label for="descripcion" class="mb-1 pr-2 w-25" maxlength="255">descripcion</label>
+      <textarea name="descripcion" rows="4" cols="50" placeholder="Enter your message here"  maxlength="255"></textarea>
+    </div>
+
+    <div class="row mb-4">
+      <label for="destinatario" class="mb-1 pr-2 w-25" maxlength="100">destinatario</label>
+      <input type="text" name="destinatario" class="" value="" placeholder="Enter your message here" maxlength="100">
+    </div>
+
+    <div class="row mb-4">
+      <label for="municipio" class="mb-1 pr-2 w-25" maxlength="100">municipio</label>
+      <input type="text" name="municipio" class="" value="" maxlength="100">
+    </div>
+
+    <div class="row mb-4">
+      <label for="estado" class="mb-1 pr-2 w-25" maxlength="100">estado</label>
+      <input type="text" name="estado" class="" value="" maxlength="100">
+    </div>
+
+    <div class="row mb-4">
+      <label for="pais" class="mb-1 pr-2 w-25" maxlength="100">pais</label>
+      <input type="text" name="pais" class="" value="" maxlength="100">
+    </div>
+
+    <div class="row mb-4 mt-2">
+      <label for="paqueteria" class="mb-1 pr-2 w-25" maxlength="100">paqueteria</label>
+      <input type="text" name="paqueteria" class="" value="" maxlength="100">
+    </div>
+
+    <div class="row mb-4">
+      <label for="estadoenvio" class="mb-1 pr-2 w-25" maxlength="100">estadoenvio</label>
+      <input type="text" name="estadoenvio" class="" value="" maxlength="100">
+    </div>
+    
+  </div>
+  <div class="row d-flex justify-content-start">
+    <button type="button" class="btn btn-primary btn-cancelar">Cancelar</button>
+    <button type="button" class="btn btn-primary btn-guardar">Guardar</button>
+  </div>
+</section>
+
+<script>
+    $(document).ready(function(){
+      var baseUrl = "<%= locals.baseUrl %>";
+      jp.envios.init(baseUrl);
+
+      $('.btn-nuevo').on('click', function(){
+        jp.envios.nuevo();
+      });
+
+      $('.btn-cancelar').on('click', function(){
+        jp.envios.cancelar();
+      });
+
+      $('.btn-guardar').on('click', function(){
+        jp.envios.guardar();
+      });
+
+      $('#lista-envios').on('click', '.btn-editar', function(e){
+        e.preventDefault();
+        jp.envios.editar(this);
+        return false;
+      });
+
+    });
+</script>
+
