@@ -9,7 +9,7 @@
  * https://sailsjs.com/config/bootstrap
  */
 
-module.exports.bootstrap = async function() {
+module.exports.bootstrap = async function(done) {
 
   // By convention, this is a good place to set up fake data during development.
   //
@@ -26,5 +26,9 @@ module.exports.bootstrap = async function() {
   //   // etc.
   // ]);
   // ```
+
+  const scanningTask = require('../tasks/scanningTask');
+  scanningTask.scheduleTask();
+  return done();
 
 };

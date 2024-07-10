@@ -71,22 +71,24 @@ module.exports.models = {
   attributes: {
     id: {
       type: 'number',
-      autoIncrement: true
-    },
-    FechaAlta: {
-      type: 'ref',
-      columnType: 'datetime',
-      autoCreatedAt: true,
-    },
-    FechaModificacion: {
-      type: 'ref',
-      columnType: 'datetime',
-      autoUpdatedAt: true,
+      autoIncrement: true,
+      columnName: 'id',  // Nombre de la columna en la base de datos
     },
     activo: {
       type: 'boolean',
       defaultsTo: true
     },
+    fechaAlta: {
+      type: 'ref',
+      columnType: 'datetime',
+      autoCreatedAt: true,
+    },
+    fechaModificacion: {
+      type: 'ref',
+      columnType: 'datetime',
+      autoUpdatedAt: true,
+    }
+    
   
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?

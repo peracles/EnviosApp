@@ -1,59 +1,94 @@
 <script src="/js/jp.envios/jp.envios.js"></script>
-<section class="container" id="titulo">
+<section class="container-fluid" id="titulo">
   <div class="row d-flex justify-content-center">
     <h1 class="text-center">Lista de Envios actualizados manualmente</h1>
-    <p>Para ver la lista de envios actualizados periodicamente favor de ingresar a la url <%= locals.baseUrl %>/periodico
-     en una pestaña nueva sin cerrar esta, para ver la demostracion
-    </p>
+    <h2>IMPORTANTE LEER ESTO</h2>
+    <p>La tarea esta programada para ejecutarse cada 30 segundos, despues de editar su estado de envio favor de esperar un momento y luego regrescar la pantalla</p>
   </div>
   <div class="row"></div>
-  <div class="row d-flex justify-content-start">
+  <div class="row d-flex justify-content-between">
     <button type="button" class="btn btn-primary btn-nuevo">Nuevo Envio</button>
+    <div class="d-flex w-50 justify-content-end">
+      <div class="row">
+        <label for="buscar" class="mb-1 pr-2 pt-2">Busca registro por ID</label>
+        <input type="text" name="buscar" class="readonly" value="" placeholder="Inserta ID" id="buscar">
+      </div>
+      <button type="button" class="btn btn-primary btn-buscar">Buscar</button>
+    </div>
   </div>
 </section>
 
-<section class="container panel mt-2" id="lista-envios"></section>
-<section class="container panel mt-2" id="forma-envio">
+<section class="container-fluid oculto panel mt-2" id="lista-envios"></section>
+<section class="container-fluid oculto panel mt-2" id="forma-envio">
   <div class="forma">
     <div class="row mb-4">
-      <label for="descripcion" class="mb-1 pr-2 w-25" maxlength="255">descripcion</label>
-      <textarea name="descripcion" rows="4" cols="50" placeholder="Enter your message here"  maxlength="255"></textarea>
+      <label for=""id="forma-descripcion"></label>
+    </div>
+    <div class="row mb-4">
+      <label for="codigoenvio" class="mb-1 pr-2 w-25">Código Envío</label>
+      <input type="text" name="codigoenvio" class="readonly" value="" placeholder="Código del envío" maxlength="10" id="codigoenvio">
     </div>
 
     <div class="row mb-4">
-      <label for="destinatario" class="mb-1 pr-2 w-25" maxlength="100">destinatario</label>
-      <input type="text" name="destinatario" class="" value="" placeholder="Enter your message here" maxlength="100">
+        <label for="descripcion" class="mb-1 pr-2 w-25">Descripción</label>
+        <textarea name="descripcion" class="readonly" rows="4" cols="50" placeholder="Descripción del envío" maxlength="255" id="descripcion"></textarea>
     </div>
 
     <div class="row mb-4">
-      <label for="municipio" class="mb-1 pr-2 w-25" maxlength="100">municipio</label>
-      <input type="text" name="municipio" class="" value="" maxlength="100">
+      <label for="destinatario" class="mb-1 pr-2 w-25">Destinatario</label>
+      <input type="text" name="destinatario" class="readonly" value="" placeholder="Nombre del destinatario" maxlength="100" id="destinatario">
     </div>
 
     <div class="row mb-4">
-      <label for="estado" class="mb-1 pr-2 w-25" maxlength="100">estado</label>
-      <input type="text" name="estado" class="" value="" maxlength="100">
+        <label for="direccion" class="mb-1 pr-2 w-25">Dirección</label>
+        <textarea name="direccion" class="readonly" rows="4" cols="50" placeholder="Descripción del envío" maxlength="255" id="direccion"></textarea>
     </div>
 
     <div class="row mb-4">
-      <label for="pais" class="mb-1 pr-2 w-25" maxlength="100">pais</label>
-      <input type="text" name="pais" class="" value="" maxlength="100">
+        <label for="codigopostal" class="mb-1 pr-2 w-25">Código Postal</label>
+        <input type="text" name="codigopostal" class="readonly" value="" placeholder="Código postal" maxlength="10" id="codigopostal">
+    </div>
+
+    <div class="row mb-4">
+        <label for="municipio" class="mb-1 pr-2 w-25">Municipio</label>
+        <input type="text" name="municipio" class="readonly" value="" placeholder="Municipio" maxlength="100" id="municipio">
+    </div>
+
+    <div class="row mb-4">
+        <label for="estado" class="mb-1 pr-2 w-25">Estado</label>
+        <input type="text" name="estado" class="readonly" value="" placeholder="Estado" maxlength="100" id="estado">
+    </div>
+
+    <div class="row mb-4">
+        <label for="pais" class="mb-1 pr-2 w-25">País</label>
+        <input type="text" name="pais" class="readonly" value="" placeholder="País" maxlength="100" id="pais">
     </div>
 
     <div class="row mb-4 mt-2">
-      <label for="paqueteria" class="mb-1 pr-2 w-25" maxlength="100">paqueteria</label>
-      <input type="text" name="paqueteria" class="" value="" maxlength="100">
+        <label for="paqueteria" class="mb-1 pr-2 w-25">Paquetería</label>
+        <select name="paqueteria" class="readonly" id="paqueteria">
+          <option value="1">Estafeta</option>
+          <option value="2">Fedex</option>
+          <option value="3">Uber</option>
+          <option value="4">Multipack</option>
+      </select>
     </div>
 
     <div class="row mb-4">
       <label for="estadoenvio" class="mb-1 pr-2 w-25" maxlength="100">estadoenvio</label>
-      <input type="text" name="estadoenvio" class="" value="" maxlength="100">
+      <select name="estadoenvio" id="estadoenvio">
+          <option value="1">Preparación</option>
+          <option value="2">Enviado</option>
+          <option value="3">En tránsito</option>
+          <option value="4">Entregado</option>
+      </select>
     </div>
     
   </div>
   <div class="row d-flex justify-content-start">
     <button type="button" class="btn btn-primary btn-cancelar">Cancelar</button>
     <button type="button" class="btn btn-primary btn-guardar">Guardar</button>
+    <button type="button" class="btn btn-primary btn-forzar">Forzar Actualizacion</button>
   </div>
 </section>
 
@@ -61,6 +96,10 @@
     $(document).ready(function(){
       var baseUrl = "<%= locals.baseUrl %>";
       jp.envios.init(baseUrl);
+
+      $('.btn-buscar').on('click', function(){
+        jp.envios.buscar();
+      });
 
       $('.btn-nuevo').on('click', function(){
         jp.envios.nuevo();
@@ -72,6 +111,10 @@
 
       $('.btn-guardar').on('click', function(){
         jp.envios.guardar();
+      });
+
+      $('.btn-forzar').on('click', function(){
+        jp.envios.forzar();
       });
 
       $('#lista-envios').on('click', '.btn-editar', function(e){

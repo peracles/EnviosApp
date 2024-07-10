@@ -10,23 +10,53 @@ module.exports = {
 
   attributes: {
     
+    codigoEnvio: {
+      type: 'number',
+      required: true
+    },
+    descripcion: {
+      type: 'string',
+      maxLength: 255,
+      required: true
+    },
     destinatario: {
       type: 'string',
-      maxLength: 100,
+      maxLength: 45,
       required: true
     },
-    idMunicipio: {
-      type: 'number',
+    direccion: {
+      type: 'string',
+      maxLength: 255,
       required: true
     },
-    idEstadoEnvio: {
-      type: 'number',
+    codigoPostal: {
+      type: 'string',
+      maxLength: 10,
+      required: true
+    },
+    municipio: {
+      type: 'string',
+      maxLength: 45,
+      required: true
+    },
+    estado: {
+      type: 'string',
+      maxLength: 45,
+      required: true
+    },
+    pais: {
+      type: 'string',
+      maxLength: 45,
       required: true
     },
 
     // Relación con Paqueterias (Many-to-One con paqueterias)
     idPaqueteria: {
       model: 'paqueterias'
+    },
+
+    idEstadoEnvio: {
+      model: 'estadosenvio'
     }
 
   },

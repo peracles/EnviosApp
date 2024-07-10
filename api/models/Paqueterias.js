@@ -10,9 +10,9 @@ module.exports = {
   tableName: 'paqueterias',
 
   attributes: {
-    paqueteria: {
+    nombre: {
       type: 'string',
-      maxLength: 100,
+      maxLength: 50,
       required: true
     },
 

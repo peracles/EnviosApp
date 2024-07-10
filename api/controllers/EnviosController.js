@@ -22,73 +22,77 @@ module.exports = {
         }
       },
   
-    async create(req,res){
+      async create(req, res) {
         try {
-
             let params = req.allParams();
             if (!params) {
-                res.badRequest({err: 'Datos no obtenidos'});
+                return res.badRequest({ err: 'Datos no obtenidos' });
             }
-
-            const results = await Envios.create({
-                idPaqueteria: params.idPaqueteria,
+    
+            const newEnvio = await Envios.create({
+                codigoEnvio: parseInt(params.codigoenvio),
+                descripcion: params.descripcion,
                 destinatario: params.destinatario,
-                idMunicipio: params.idMunicipio,
-                idEstadoEnvio: params.idEstadoEnvio
-            });
-                
-            return res.ok(results);
-            
+                direccion: params.direccion,
+                codigoPostal: params.codigopostal,
+                municipio: params.municipio,
+                estado: params.estado,
+                pais: params.pais,
+                idPaqueteria: parseInt(params.idPaqueteria),
+                idEstadoEnvio: parseInt(params.idEstadoEnvio)
+            }).fetch(); // Utiliza .fetch() para obtener el registro creado
+    
+            return res.ok(newEnvio);
+    
         } catch (err) {
             return res.serverError(err);
         }
     },
-
-    async find(req,res){
+    
+      async find(req, res) {
         try {
-            const envios = await Envios.find().populate('idPaqueteria');
-            return res.ok(envios);
+          const envios = await Envios.find().populate('idPaqueteria').populate('idEstadoEnvio');
+          return res.ok(envios);
         } catch (error) {
-            return res.serverError(error);
+          return res.serverError(error);
         }
-    },
-
-    async findOne(req,res){
+      },
+    
+      async findOne(req, res) {
         try {
-            const envio = await Envios.findOne({id: req.params.id});
-
-            return res.ok(envio);
-            
+          const envio = await Envios.findOne({ id: req.params.id }).populate('idPaqueteria').populate('idEstadoEnvio');
+          if (!envio) {
+            return res.notFound({ err: 'Registro no encontrado' });
+          }
+          return res.ok(envio);
+    
         } catch (error) {
-            return res.serverError(error);
+          return res.serverError(error);
         }
-    },
+      },
+    
+      async update(req, res) {
+        const { id, idPaqueteria, idEstadoEnvio } = req.body;
 
-    async update(req,res){
+        // Validar que los IDs sean válidos
+        if (idPaqueteria !== null && idPaqueteria <= 0) {
+          return res.status(400).send('Invalid idPaqueteria');
+        }
+        if (idEstadoEnvio !== null && idEstadoEnvio <= 0) {
+          return res.status(400).send('Invalid idEstadoEnvio');
+        }
+    
         try {
-            let params = req.allParams();
-            let attributes = {};
-
-            if(params.idPaqueteria){
-                attributes.idPaqueteria = params.idPaqueteria;
-            }
-            if(params.destinatario){
-                attributes.destinatario = params.destinatario;
-            }
-            if(params.idMunicipio){
-                attributes.idMunicipio = params.idMunicipio;
-            }
-            if(params.idEstadoEnvio){
-                attributes.idEstadoEnvio = params.idEstadoEnvio;
-            }
-
-            const result = await Envios.update({id: req.params.id}, attributes);
-            return res.ok(result);
-            
+          // Realizar la actualización
+          const updatedEnvio = await Envios.updateOne({ id }).set(req.body);
+          if (!updatedEnvio) {
+            return res.status(404).send('Envio not found');
+          }
+          return res.json(updatedEnvio);
         } catch (error) {
-            return res.serverError(error);
+          return res.serverError(error);
         }
-    },
+      }
 //destroy(){}
 };
 

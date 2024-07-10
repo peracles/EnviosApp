@@ -14,7 +14,7 @@ module.exports.routes = {
   'GET /lista': 'EnviosController.find',
   'GET /buscar/:id': 'EnviosController.findOne',
   'POST /envios': 'EnviosController.create',
-  'PUT /actualizar/:id': 'EnviosController.update',
+  'POST /actualizar': 'EnviosController.update',
   
 
 
